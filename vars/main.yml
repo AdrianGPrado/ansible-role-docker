@@ -1,2 +1,10 @@
 ---
 # vars file for docker
+
+
+container_specific_os_family:
+  - CoreOS
+
+
+generic_linux_os_family:
+  - RedHat

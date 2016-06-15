@@ -1,0 +1,14 @@
+---
+
+docker: 'docker'
+docker_py: 'python-docker-py'
+
+required_packages:
+  - name: '{{ docker }}'
+    state: latest
+  - name: '{{ docker_py }}'
+    state: latest
+
+docker_services:
+  - enable docker service
+  - restart docker service
