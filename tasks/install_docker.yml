@@ -19,7 +19,6 @@
   when: not container_specific_OS
   package: name='{{ item.name }}' state='{{ item.state }}'
   with_items: '{{ required_packages }}'
-
-- debug: msg="trigger docker restart"
-  notify: '{{ docker_services }}'
-  changed_when: true
+  notify:
+    - enable docker service
+    - restart docker service
