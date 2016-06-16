@@ -1,0 +1,15 @@
+---
+
+docker_py_pkg_name: docker-py
+docker_py_pkg_version: '1.8.1'
+
+required_packages:
+  - name: '{{ docker_py_pkg_name }}'
+    state: '{{ docker_py_pkg_version }}'
+
+# name the handlers necessary to run docker service
+docker_services:
+  - enable etcd service
+  - restart etcd service
+  - enable docker service
+  - restart docker service
