@@ -1,5 +1,10 @@
 ---
 
+- name: reload systemd
+  become: yes
+  become_user: root
+  systemd: daemon_reload=yes
+
 - name: enable etcd service
   become: yes
   become_user: root
@@ -19,3 +24,8 @@
   become: yes
   become_user: root
   service: name=docker.service state=restarted
+
+- name: stop docker service
+  become: yes
+  become_user: root
+  service: name=docker.service state=stopped
