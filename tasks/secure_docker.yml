@@ -1,1 +1,14 @@
 ---
+
+- name: create docker TLS directory
+  file: path={{ docker_tls_path }} state=directory
+
+- name: install docker TLS credentials
+  template: src={{ item.from }} dest={{ item.to }} mode=0644
+  with_items:
+    - from: ca.pem.j2
+      to: "{{ docker_tls_path }}/ca.pem"
+    - from: key.pem.j2
+      to: "{{ docker_tls_path }}/key.pem"
+    - from: cert.pem.j2
+      to: "{{ docker_tls_path }}/cert.pem"
