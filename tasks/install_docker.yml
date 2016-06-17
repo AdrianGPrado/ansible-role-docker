@@ -20,8 +20,8 @@
   package: name='{{ item.name }}' state='{{ item.state }}'
   with_items: '{{ required_packages }}'
 
-- debug: msg="trigger docker restart"
-  notify:
-  - enable docker service
-  - restart docker service
-  changed_when: true
+# - debug: msg="trigger docker restart"
+#   notify:
+#   - enable docker service
+#   - restart docker service
+#   changed_when: true

@@ -1,5 +1,12 @@
 ---
 
+# Locate the service.
+# $ systemctl show docker | grep FragmentPath
+docker_daemon_path: /etc/systemd/system/docker.service.d
+
+# Docker daemon options name in the host OS
+DOCKER_OPTS: DOCKER_OPTS
+
 docker_py_pkg_name: docker-py
 docker_py_pkg_version: '1.8.1'
 
