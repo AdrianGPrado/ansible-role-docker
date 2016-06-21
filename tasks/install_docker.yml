@@ -1,0 +1,27 @@
+---
+
+# Different OS's can have different package names
+- include_vars: "{{ ansible_os_family }}_vars.yml"
+
+- set_fact:
+    container_specific_OS: False
+
+- set_fact:
+    container_specific_OS: True
+  when: '"{{ ansible_os_family }}" in container_specific_os_family'
+
+- name: Install docker-py in container specific OS
+  when: container_specific_OS
+  pip: name='{{ item.name }}' version='{{ item.state }}'
+  with_items: '{{ required_packages }}'
+
+- name: Install docker & docker-py in non-container OS's
+  when: not container_specific_OS
+  package: name='{{ item.name }}' state='{{ item.state }}'
+  with_items: '{{ required_packages }}'
+
+# - debug: msg="trigger docker restart"
+#   notify:
+#   - enable docker service
+#   - restart docker service
+#   changed_when: true

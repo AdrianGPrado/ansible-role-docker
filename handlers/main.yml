@@ -1,2 +1,32 @@
 ---
-# handlers file for docker
+
+- name: enable etcd service
+  become: yes
+  become_user: root
+  service: name=etcd.service enabled=yes
+
+- name: restart etcd service
+  become: yes
+  become_user: root
+  service: name=etcd.service state=restarted
+
+- name: enable docker service
+  become: yes
+  become_user: root
+  service: name=docker.service enabled=yes
+
+- name: restart docker service
+  become: yes
+  become_user: root
+  service: name=docker.service state=restarted
+
+- name: stop docker service
+  become: yes
+  become_user: root
+  service: name=docker.service state=stopped
+
+# TODO: Uncoment whe upgrade to Ansible >=2.2
+# - name: reload systemd daemons
+#   become: yes
+#   become_user: root
+#   systemd: daemon_reload=yes

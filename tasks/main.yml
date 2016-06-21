@@ -1,2 +1,11 @@
 ---
 # tasks file for docker
+
+- fail: msg='OS not suported'
+  when: '"{{ ansible_os_family }}" not in container_specific_os_family and
+         "{{ ansible_os_family }}" not in generic_linux_os_family'
+
+- include: install_docker.yml
+
+- include: secure_docker.yml
+  when: docker_client_tls or docker_server_tls
